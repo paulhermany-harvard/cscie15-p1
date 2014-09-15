@@ -1,0 +1,23 @@
+.fixed-width-centered {
+	margin:0 auto;
+	width:900px;
+}
+
+.header {
+	background:transparent url('images/paulhermany-photo-128.jpg') no-repeat scroll top left;
+	min-height:128px;
+	padding-left:128px;
+}
+
+.header h1 {
+	font-size:1.6em;
+}
+
+.header h1, .header p {
+	margin:0 0 .5em 20px;
+	padding:0;
+}
+
+.question { font-weight:bold; }
+
+.answer { }
