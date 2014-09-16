@@ -13,4 +13,5 @@ No demo available for this project.
 No instructions available for this project.
 
 ## Third-party Plug-ins, Libraries
-No third-party plug-ins or libraries used in this project.
+JQuery: http://jquery.com/
+Bootstrap: http://getbootstrap.com/
