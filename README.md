@@ -13,5 +13,6 @@ No demo available for this project.
 No instructions available for this project.
 
 ## Third-party Plug-ins, Libraries
+* RequireJS: http://requirejs.org/
 * JQuery: http://jquery.com/
 * Bootstrap: http://getbootstrap.com/
