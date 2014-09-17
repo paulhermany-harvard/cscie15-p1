@@ -25,12 +25,21 @@ No instructions available for this project.
 ### Implementation details
 
 * Bootstrap
+
   This website uses Bootstrap with the default theme to provide a responsive user interface.
+
 * Html5Shiv
+
   This website uses Html5Shiv (included only by CDN) to shim the html for browsers that do not support Html5.
+
 * JQuery
+
   This is a dependency for the Bootstrap library.
+
 * Respond
+
   This website uses Respond (included only by CDN) to shim the css for browsers that do not support CSS3 or responsive css rules.
+
 * RequireJS
+
   This website uses RequireJS to manage JavaScript library dependencies and handle the CDN pull with local fallback.
