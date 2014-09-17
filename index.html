@@ -1,50 +1,154 @@
 <!DOCTYPE html>
+
+<!-- sets the base language for the document
+     [REF: http://www.w3.org/TR/html401/struct/dirlang.html#h-8.1] -->
 <html lang="en">
   <head>
-    <meta charset="utf-8"/>
+  
+    <!-- sets the character encoding for the document
+         [TODO: use HTTP headers to set the character encoding] -->
+    <meta charset="UTF-8"/>
+    <!-- tell Internet Explorer to use the latest possible compatibility setting
+         this causes W3C markup validation to fail
+         [TODO: use HTTP headers to set the X-UA-Compatible attribute] -->
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <!-- set the viewport settings so the page renders correctly on mobile devices
+         this page is responsive, so the width should be device width and the content should not be scaled -->
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
     
+    <!-- set the meta title
+         use whatever convention is best for you, but be mindful of SEO
+         [page friendly name] | [site friendly name] | [organization/domain friendly name]
+         [REF: http://moz.com/learn/seo/title-tag] -->
     <title>Project 1 | CSCI E-15 Fall 2014 | Paul Hermany</title>
     
+    <!-- include the bootstrap base stylesheet
+         if this page were using a bootstrap theme, the reference would be included below this line
+         for directory structure, use whatever convention is best for you, but it's common to see a "lib" folder for libraries -->
     <link rel="stylesheet" href="./css/lib/bootstrap-3.2.0.min.css"/>
+    <!-- include the application "local" stylesheet
+         because this page is using bootstrap, only a couple CSS tweaks are needed -->
     <link rel="stylesheet" href="./css/app.css"/>
     
+    <!-- HTML5 elements and CSS3 will not work in IE8 and below
+         these javascript libraries will help the page display correctly for downgraded browsers
+         they are included via CDN (content delivery network) with NO local fallback
+         if they fail to load, that's fine for this page -->
     <!--[if lt IE 9]>
       <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->    
   </head>
   <body>
+  
+    <!-- wrap the entire body contents in a div
+         the bootstrap "container" class will handle the fixed-width, centered layout
+         this style rule will center the content by applying a fixed width to the div and using an "auto" left/right margin -->
     <div class="container">
-        
+    
+        <!-- the bootstrap grid system uses the "row" class as a container for columns
+             this class handles the necessary margin, padding, and clear rules needed for the floated columns -->
         <div class="row">
+        
+            <!-- the first row consists of two columns:
+                
+                   3-col              9-col
+                 +~~~~~~~+ +~~~~~~~~~~~~~~~~~~~~~~~~~+
+                 | photo | |         content         |
+                 +~~~~~~~+ +~~~~~~~~~~~~~~~~~~~~~~~~~+
+                
+                 this is easily achieved by using the following html:
+                 <div class="col-sm-3">photo</div>
+                 <div class="col-sm-9">content</div>
+                
+                 the challenge here is that we don't want the photo to be semantically first on the page
+                 this is less important for this page, but may be critical in an application that has a more sophisticated design
+                
+                 so, we can change it by putting the markup in the correct order, and then pushing/pulling the columns into position as follows:
+                 <div class="col-sm-9 col-sm-push-3">content</div>
+                 <div class="col-sm-3 col-sm-pull-9">photo</div>
+                
+                 the actual markup is a bit trickier because I decided to allow the photo to occupy more space for larger screen resolutions
+                 for medium and higher screens "-md-" it's an 8/4 ratio
+                 for small screens "-sm-" it's a 9/3 ratio
+                
+                 for extra small screens (mobile devices), some of the content is hidden
+            -->
             <div class="col-sm-9 col-sm-push-3 col-md-8 col-md-push-4">
+            
+                <!-- define a nested grid row for the name badge rendering
+                     for extra small screens, the left-hand photo is collapsed entirely and the name is displayed as a name badge with a small photo -->
                 <div class="row">
+                
+                    <!-- define the first nested grid-column
+                         use the bootstrap "visible-xs" class to indicate that this should only be visible for extra small screens -->
                     <div class="name-badge visible-xs col-xs-4">
+                        
+                        <!-- use the bootstrap "img-responsive" class to allow the photo to fill the width and height of the column (up to the max size)
+                             the image tag is also using an "alt" tag to make it friendly for screen readers -->
                         <img alt="Paul Hermany - Photo" class="img-responsive" src="images/paulhermany-photo-128.jpg"/>
-                    </div>
+                        
+                    </div><!-- end first nested grid column-->
+                    
+                    <!-- define the second nested grid column
+                         this column contains the name, which is also the level-1 heading for the page -->
                     <div class="col-xs-8">
+                    
+                        <!-- the level-1 heading is a mailto link using default bootstrap styles -->
                         <h1><a href="mailto:paulhermany@gmail.com">Paul Hermany</a></h1>
+                        
+                        <!-- for extra small screens, replace the lead paragraph with minimal "Job Title/Company Name" copy
+                             we're going to assume that if you are on a mobile device, you don't want to read through the 2-3 sentence lead copy text -->
                         <p class="lead visible-xs">
+                        
+                            <!-- for extra extra small screens (not included in the bootstrap media styles) the text might wrap incorrectly
+                                 the solution is to split the copy into two phrases with the "text-nowrap" class
+                                 to make sure they wrap the way we want -->
                             <span class="text-nowrap"><em>Applications Developer</em>, </span>
                             <span class="text-nowrap">Harvard Kennedy School</span>
                         </p>
-                    </div>
+                        
+                    </div><!-- end second nested grid column-->
                     
-                </div>
+                </div><!-- end nested grid row -->
 
+                <!-- define the lead copy for the first row
+                     the copy is fully responsive (overkill for this page, but a fun experiment):
+                     * hidden for extra small screens (we use the name-badge job title instead)
+                     * one sentence for small screens
+                     * full copy for medium and larger screens -->
                 <p class="lead hidden-xs">I am an applications developer at the Harvard Kennedy School specializing in .NET and SharePoint technologies.<span class="hidden-sm"> I have a bachelor's degree in mathematics and computer science from DePaul University, and I am currently pursuing a master's degree in mathematics for teaching at the Harvard Extension School.</span></p>
-            </div>
+                
+            </div><!-- end content column-->
+            
+            <!-- define the photo column, which uses the compliment responsive grid classes to the content column -->
             <div class="hidden-xs col-sm-3 col-sm-pull-9 col-md-4 col-md-pull-8">
+            
+                <!-- use the boostrap "img-responsive" class to allow the photo to fill the width and height of the column (up to the max size)
+                     the image tag is also using an "alt" tag to make it friendly for screen readers
+                     [TODO: use javascript trickery to prevent this image from downloading at all for small screens] -->
                 <img alt="Paul Hermany - Photo" class="img-responsive" src="images/paulhermany-photo-320.jpg" />
-            </div>
-        </div>
+                
+            </div><!-- end photo column-->
+            
+        </div><!-- end first row -->
         
+        <!-- the second row consists of two columns that are in the correct semantic order -->
         <div class="row">
+            
+            <!-- define the first column containing the list of links -->
             <div class="col-md-4">
+            
+                <!-- use the bootstrap "list-unstyled" class to remove default browser styles (bullets/margins)
+                     the "project-links" class is not necessary for the current branding -->
                 <ul class="project-links list-unstyled">
                     
+                    <!-- each of the project links use the same markup:
+                         * a level-3 heading for the link title
+                         * a github link styled as a button using bootstrap's default button styles
+                         * a site link styled as a bootstrap button
+                         * links that are not yet active are given the bootstrap "disabled" class to appear as disabled (and not function)-->
+                         
                     <li>
                         <h3>Project 1 - Portfolio</h3>
                         <a class="btn btn-default btn-sm github" href="https://github.com/paulhermany-harvard/cscie15-p1" role="button" title="Project 1 - GitHub Link">github</a>
@@ -71,9 +175,12 @@
                     
                 </ul>
                 
-            </div>
+            </div><!-- end the first column -->
             
+            <!-- begin the second column containing the Q&A -->
             <div class="col-md-8">
+            
+                <!-- minimal styling here, just some level-4 headings and some copy paragraphs -->
             
                 <h4>Why am I taking this course?</h4>
                 <p>This course is an elective for the Math for Teaching program at the Harvard Extension School. While I have experience with developing dynamic web applications, I do not have experience with PHP or Git. This is a great opportunity to learn some new skills and refresh some old ones.</p>
@@ -87,12 +194,24 @@
                 <h4>Anything else you should know?</h4>
                 <p>Server management is not one of my greatest skills, and my Unix CL experience is limited to managing an SVN server on RedHat. It's not a primary focus of this class, but one of my goals is to get better at managing LAMP environments. I'll be looking for ways to practice this throughout the semester, and I might try to switch to a Linux OS for one of the later projects.</p>
                 
-            </div>
-        </div>
+            </div><!-- end second column -->
+            
+        </div><!-- end second row -->
 
-    </div>
+    </div><!-- end fixed-width, centered container -->
     
+    <!-- include the RequireJS script at the bottom of the page
+         we are essentially delegating the loading of scripts to this library, which will handle all the dependencies
+         the app.js file contains the configuration for the app, which will load the following libraries (in order):
+         * JQuery (from a CDN)
+         * JQuery (locally if the CDN is not available
+         * Bootstrap (from a CDN)
+         * Bootstrap (locally if the CDN is not available
+         
+         the benefit of using a CDN with a local fallback is that it may be faster to load scripts from a CDN
+         the RequireJS plug-in handles the dependency checks nicely -->
     <script type="text/javascript" src="./js/lib/require-2.1.15.min.js" data-main="./js/app.js"></script>
+    
   </body>
 </html>
 
