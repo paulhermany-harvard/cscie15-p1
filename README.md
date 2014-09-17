@@ -13,8 +13,6 @@ No demo available for this project.
 No instructions available for this project.
 
 ## Third-party plug-ins/libraries
-This website uses Bootstrap (with the default theme) to provide a responsive user interface.
-This website also uses RequireJS to manage JavaScript library dependencies and handle the CDN pull with local fallback.
 
 | Name       | Version | Url                                   |
 | ---------- | ------- | ------------------------------------- |
